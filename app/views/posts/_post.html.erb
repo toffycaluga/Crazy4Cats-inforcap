@@ -1,14 +1,15 @@
-<div id="<%= dom_id post %>">
+<div id="<%= dom_id post %>" class="card">
 
-  <%= image_tag post.try(:photo),class:"card-img-top" %>
-  <p>
-    <strong>Description:</strong>
+  <%= image_tag post.try(:photo),class:"card-img-top" ,alt:"post"%>
+  <div class="card-body">
+  <h5 class="card-title" >
+    <%= post.user.name %>
+  </h5>
+  <p class="card-text">
     <%= post.description %>
   </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= post.user_id %>
-  </p>
-
+  </div>
+    <div class="card-footer text-end bg-transparent">
+      <%= link_to "Show this post", post, class:"btn btn-primary text-end" %>
+    </div>
 </div>
