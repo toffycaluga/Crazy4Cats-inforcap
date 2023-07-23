@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    
+    <% if user_signed_in? %>
+        
+    <p class="navbar-brand text-white"><%=current_user.name %></p>
+    <% end %>
+    
+    
+    <a class="navbar-brand" href="#">Crazy4Cats</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+            <%= link_to 'Home', root_path, class:(current_page?(root_path) ? 'active nav-link' : 'nav-link') %>
+        </li>
+        
+        <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to 'New Post', new_post_path, class:(current_page?(root_path) ? 'active nav-link' : 'nav-link') %>
+        </li>
+            
+        <% end %>
+      </ul>
+      <div class="d-flex" >
+        
+        <% if user_signed_in? %> 
+            <%= button_to "Cerrar sesión", destroy_user_session_path, method: :delete ,class:"btn btn-danger" %>
+
+            
+        <% else %>
+            <%= link_to "Iniciar session", user_session_path, class:"btn btn-success " %>
+        <% end %>
+        </div>
+    </div>
+  </div>
+</nav>
