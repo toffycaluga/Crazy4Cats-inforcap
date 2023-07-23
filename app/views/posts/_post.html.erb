@@ -10,6 +10,25 @@
   </p>
   </div>
     <div class="card-footer text-end bg-transparent">
-      <%= link_to "Show this post", post, class:"btn btn-primary text-end" %>
-    </div>
+      <% if current_page?(post_path(post.id)) %>
+        <!-- Mostrar comentarios existentes -->
+        <%= render 'comment' ,post:post%>
+        <!-- Formulario para agregar nuevos comentarios -->
+        <%= render 'comment_form', commentable: @post %>
+      <% else %>
+        <% last_comment = post.comments.last %>
+        <% if last_comment %>
+          <div class="comment">
+            <p><strong><%= last_comment.user.name %>:</strong> <%= last_comment.content %></p>
+          </div>
+        <% end %>
+      <% end %>
+      <% if controller_name == 'posts' && action_name != 'show' %>
+      <p class="text-end">
+        <%= link_to "Show this post", post ,class:"btn btn-primary"%>
+      </p>
+      
+      <% end %>
+      
+   </div>
 </div>
