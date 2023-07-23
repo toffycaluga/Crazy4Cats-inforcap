@@ -10,15 +10,13 @@
       </ul>
     </div>
   <% end %>
-
+    <div class="field">
+    <%= form.label :photo %><br>
+    <%= form.file_field :photo  %>
+  </div>
   <div>
     <%= form.label :description, style: "display: block" %>
     <%= form.text_area :description %>
-  </div>
-
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
   </div>
 
   <div>
