@@ -4,6 +4,9 @@
     <% sorted_comments.each do |comment| %>
     <div class="container ">
         <p class="m-0">
+            <strong><%= comment.user.try(:name) %>:</strong>
+        </p>
+        <p class="m-0">
             <%= comment.content %>  
         </p >
         <small class="text-body-secondary text-end mb-2">

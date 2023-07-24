@@ -5,15 +5,15 @@ class CommentsController < ApplicationController
     end
 
     def create
-      @post = Post.find(params[:photo_id])
-    @comment = @post.comments.build(comment_params)
-    @comment.user = current_user # Asocia el comentario al usuario actualmente autenticado
+        @post = Post.find(params[:post_id])
+        @comment = @post.comments.build(comment_params)
+        @comment.user = current_user # Asocia el comentario al usuario actualmente autenticado
 
-      if @comment.save
-        redirect_to request.fullpath, notice: 'Comentario creado correctamente.'
-      else
-        redirect_to request.fullpath, alert: 'No se pudo crear el comentario.'
-      end
+        if @comment.save
+            redirect_to request.fullpath, notice: 'Comentario creado correctamente.'
+        else
+            redirect_to request.fullpath, alert: 'No se pudo crear el comentario.'
+        end
     end
   
     private
