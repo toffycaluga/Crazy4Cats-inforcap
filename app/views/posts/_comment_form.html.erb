@@ -8,9 +8,13 @@
         <%= form.label :anonymous, 'Comentar como anónimo' %>
         <%= form.check_box :anonymous %>
     <% end %>
+    <div class="input-group field">
+        <%= form.text_area :content, placeholder: 'Escribe un comentario...' ,aria_label:"input group example", aria_describedby:"btnGroupAddon",class:"form-control"%>
 
-  <div class="field">
-    <%= form.text_area :content, placeholder: 'Escribe un comentario...' %>
+   
+        <%= form.submit 'Agregar comentario', class: 'input-group-text bg-primary text-white', id:"btnGroupAddon" %>
+   
   </div>
-  <%= form.submit 'Agregar comentario', class: 'btn btn-primary' %>
+
+
 <% end %>
