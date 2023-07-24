@@ -15,4 +15,6 @@ class Post < ApplicationRecord
   has_one_attached :photo do |atachable|
     atachable.variant :thumb,resize_to_limit:[200,300]
   end
+
+  has_many :comments, as: :commentable, dependent: :destroy
 end
