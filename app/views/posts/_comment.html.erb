@@ -4,7 +4,13 @@
     <% sorted_comments.each do |comment| %>
     <div class="container ">
         <p class="m-0">
-            <strong><%= comment.user.try(:name) %>:</strong>
+            
+            <% if comment.anonymous? %>
+                <strong>Anonimo:</strong>
+            <% else %>
+                <strong><%= comment.user.try(:name) %>:</strong>
+            <% end %>
+            
         </p>
         <p class="m-0">
             <%= comment.content %>  

@@ -7,7 +7,13 @@ class CommentsController < ApplicationController
     def create
         @post = Post.find(params[:post_id])
         @comment = @post.comments.build(comment_params)
-        @comment.user = current_user # Asocia el comentario al usuario actualmente autenticado
+        
+        # Si el comentario es anónimo
+        if !current_user && params[:comment][:anonymous] == "1"
+            @comment.user = User.find_or_create_by(name: 'Anónimo')
+        else
+            @comment.user = current_user # Asocia el comentario al usuario actualmente autenticado
+        end
 
         if @comment.save
             redirect_to request.fullpath, notice: 'Comentario creado correctamente.'
@@ -19,11 +25,7 @@ class CommentsController < ApplicationController
     private
   
     def comment_params
-      params.require(:comment).permit(:content)
-    end
-  
-    def commentable_path
-      # Lógica para redirigir a la página de detalle de Photo o User, dependiendo del tipo de comentario
+      params.require(:comment).permit(:content,:commentable_id,:commentable_type)
     end
   
     def find_commentable
