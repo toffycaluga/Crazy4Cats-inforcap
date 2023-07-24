@@ -9,7 +9,7 @@
     <%= post.description %>
   </p>
   </div>
-    <div class="card-footer text-end bg-transparent">
+    <div class="card-footer  bg-transparent">
       <% if current_page?(post_path(post.id)) %>
         <!-- Mostrar comentarios existentes -->
         <%= render 'comment' ,post:post%>
