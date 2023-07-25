@@ -17,4 +17,5 @@ class Post < ApplicationRecord
   end
 
   has_many :comments, as: :commentable, dependent: :destroy
+  has_many :reactions, as: :reactionable
 end

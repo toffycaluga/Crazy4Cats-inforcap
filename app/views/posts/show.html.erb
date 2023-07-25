@@ -2,6 +2,16 @@
 
 <%= render @post %>
 
+<!-- Mostrar los likes y dislikes -->
+Likes: <%= @post.reactions.where(kind: 'like').count %>
+Dislikes: <%= @post.reactions.where(kind: 'dislike').count %>
+
+<!-- Botón para dar like -->
+<%= button_to 'Like', like_post_path(@post), method: :post %>
+
+<!-- Botón para dar dislike -->
+<%= button_to 'Dislike', dislike_post_path(@post), method: :post %>
+
 
 <div>
   <%= link_to "Edit this post", edit_post_path(@post) %> |

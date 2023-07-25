@@ -59,6 +59,18 @@ class PostsController < ApplicationController
     end
   end
 
+  def like
+    @post = Post.find(params[:id])
+    current_user.reactions.create(reactionable: @post, kind: 'like')
+    redirect_to @post, notice: "Has dado like al post."
+  end
+
+  def dislike
+    @post = Post.find(params[:id])
+    current_user.reactions.create(reactionable: @post, kind: 'dislike')
+    redirect_to @post, notice: "Has dado dislike al post."
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
