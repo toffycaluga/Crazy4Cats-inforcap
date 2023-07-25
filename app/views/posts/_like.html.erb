@@ -1,0 +1,16 @@
+
+<!-- Mostrar los likes y dislikes -->
+Likes: <%= @post.reactions.where(kind: 'like').count %>
+Dislikes: <%= @post.reactions.where(kind: 'dislike').count %>
+
+
+
+<div class="input-group field">
+<!-- Botón para dar like -->
+<%= button_to 'Like', like_post_path(@post), method: :post ,aria_label:"input group example", aria_describedby:"btnGroupAddon",class:"btn btn-primary m-2"%>
+        
+   
+<!-- Botón para dar dislike -->
+<%= button_to 'Dislike', dislike_post_path(@post), method: :post, class: 'input-group-text btn btn-danger m-2', id:"btnGroupAddon" %>
+   
+</div>
